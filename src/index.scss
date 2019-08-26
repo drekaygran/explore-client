@@ -1,1 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: max-content auto;
+}

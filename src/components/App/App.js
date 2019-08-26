@@ -8,6 +8,11 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Places from '../Places/Places'
+import Book from '../Places/Book'
+import CreateBook from '../Places/CreateBook'
+import EditBook from '../Places/EditBook'
+import MyMap from '../Places/MyMap'
 
 class App extends Component {
   constructor () {
@@ -42,18 +47,50 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/places' component={Places} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route
+            exact path='/places/:id'
+            render={() => (
+              <Book
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path='/map'
+            component={MyMap}
+          />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <AuthenticatedRoute
+            user={user}
+            path='/create-book'
+            render={() => (
+              <CreateBook
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact path='/places/:id/edit'
+            render={() => (
+              <EditBook
+                user={user}
+                alert={this.alert}
+              />
+            )} />
         </main>
       </Fragment>
     )
