@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
@@ -33,8 +33,8 @@ class Place extends Component {
     }
   }
 
-  destroy = event => {
-    event.preventDefault()
+  destroy = () => {
+    // event.preventDefault()
     axios({
       method: 'DELETE',
       url: `${apiUrl}/places/${this.props.match.params.id}`,
@@ -61,9 +61,16 @@ class Place extends Component {
   }
 
   render () {
-    const { place, show } = this.state
+    const { place, show, deleted } = this.state
     const handleShow = () => this.setState({ show: true })
     const handleClose = () => this.setState({ show: false })
+    const deleteAndCloseModal = () => {
+      this.destroy()
+      handleClose()
+    }
+    if (deleted) {
+      return <Redirect to={'/places'} />
+    }
     return (
       <div>
         { place && (
@@ -80,7 +87,7 @@ class Place extends Component {
                 <Button variant="secondary" onClick={handleClose}>
                    No, I changed my mind.
                 </Button>
-                <Button variant="danger" onClick={this.destroy}>
+                <Button variant="danger" onClick={deleteAndCloseModal}>
                    Yes, delete this place
                 </Button>
               </Modal.Footer>

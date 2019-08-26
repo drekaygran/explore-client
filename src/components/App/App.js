@@ -12,7 +12,6 @@ import Places from '../Places/Places'
 import Place from '../Places/Place'
 import CreatePlace from '../Places/CreatePlace'
 import EditPlace from '../Places/EditPlace'
-// import DeletePlace from '../Places/DeletePlace'
 import MyMap from '../Places/MyMap'
 
 class App extends Component {
