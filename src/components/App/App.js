@@ -9,9 +9,10 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import Places from '../Places/Places'
-import Book from '../Places/Book'
-import CreateBook from '../Places/CreateBook'
-import EditBook from '../Places/EditBook'
+import Place from '../Places/Place'
+import CreatePlace from '../Places/CreatePlace'
+import EditPlace from '../Places/EditPlace'
+// import DeletePlace from '../Places/DeletePlace'
 import MyMap from '../Places/MyMap'
 
 class App extends Component {
@@ -47,18 +48,39 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route exact path='/places' component={Places} />
-          <Route path='/sign-up' render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
-          )} />
-          <Route path='/sign-in' render={() => (
-            <SignIn alert={this.alert} setUser={this.setUser} />
-          )} />
+          <Route
+            exact path='/places'
+            render={() => (
+              <Places
+                alert={this.alert}
+                user={this.user}
+              />
+            )}
+          />
+          <Route
+            path='/sign-up'
+            render={() => (
+              <SignUp
+                alert={this.alert}
+                setUser={this.setUser}
+              />
+            )}
+          />
+          <Route
+            path='/sign-in'
+            render={() => (
+              <SignIn
+                alert={this.alert}
+                setUser={this.setUser}
+              />
+            )}
+          />
           <Route
             exact path='/places/:id'
             render={() => (
-              <Book
+              <Place
                 user={user}
+                alert={this.alert}
               />
             )}
           />
@@ -66,17 +88,32 @@ class App extends Component {
             path='/map'
             component={MyMap}
           />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
-          )} />
           <AuthenticatedRoute
             user={user}
-            path='/create-book'
+            path='/sign-out'
             render={() => (
-              <CreateBook
+              <SignOut
+                alert={this.alert}
+                clearUser={this.clearUser}
+                user={user}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path='/change-password'
+            render={() => (
+              <ChangePassword
+                alert={this.alert}
+                user={user}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path='/create-place'
+            render={() => (
+              <CreatePlace
                 user={user}
                 alert={this.alert}
               />
@@ -86,15 +123,26 @@ class App extends Component {
             user={user}
             exact path='/places/:id/edit'
             render={() => (
-              <EditBook
+              <EditPlace
                 user={user}
                 alert={this.alert}
               />
-            )} />
+            )}
+          />
         </main>
       </Fragment>
     )
   }
 }
+// <AuthenticatedRoute
+//   user={user}
+//   exact path='/places/:id/destroy'
+//   render={() => (
+//     <DeletePlace
+//       user={user}
+//       alert={this.alert}
+//     />
+//   )}
+// />
 
 export default App

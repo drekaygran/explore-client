@@ -28,9 +28,10 @@ class Places extends Component {
   }
 
   render () {
+    // console.log(this.state.places)
     const placesJsx = this.state.places.map(place => (
-      <ListGroup.Item key={place._id}>
-        <Link to={`/places/${place._id}`} >{place.name}</Link>
+      <ListGroup.Item key={place.id}>
+        <Link to={`/places/${place.id}`} >{place.name}</Link>
       </ListGroup.Item>
     ))
 
