@@ -6,12 +6,17 @@
 - As a user I want to update or delete a place I own
 - As a user I want to see a map associated with every place that has a legitimate address
 
-Mobile Wireframes
-![Mobile Wireframes](/public/images/wireframes-mobile.JPG)
+<!--
+![Mobile Wireframes](./public/images/wireframes-mobile.JPG =200x) -->
+Mobile Wireframes:
+
+<img src="./public/images/wireframes-mobile.JPG" width=350px>
 
 Desktop Wireframes:
-![Desktop Wireframes](/public/images/wireframes-desktop.JPG)
+
+<img src="./public/images/wireframes-desktop.JPG" width=300px>
 
 
 ERD:
-![ERD](/public/images/erd.JPG)
+
+<img src="./public/images/erd.JPG" width=350px>
