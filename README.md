@@ -6,6 +6,12 @@
 - As a user I want to update or delete a place I own
 - As a user I want to see a map associated with every place that has a legitimate address
 
-![Mobile Wireframes](https://imgur.com/xi6Ojq0)
+Mobile Wireframes
+![Mobile Wireframes](/public/images/wireframes-mobile.JPG)
 
-![Desktop Wireframes](https://imgur.com/boVzS7Z)
+Desktop Wireframes:
+![Desktop Wireframes](/public/images/wireframes-desktop.JPG)
+
+
+ERD:
+![ERD](/public/images/erd.JPG)
