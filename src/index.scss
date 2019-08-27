@@ -8,6 +8,10 @@ main {
   align-items: center;
   display: flex;
   justify-content: center;
+
+  div:first-child {
+    width: 100%;
+  }
 }
 
 #root {

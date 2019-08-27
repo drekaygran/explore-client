@@ -63,12 +63,14 @@ class EditPlace extends Component {
       )
     }
     return (
-      <PlaceForm
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        place={this.state.place}
-        handleRateChange={this.handleRateChange}
-      />
+      <div style={{ paddingTop: '4vh' }}>
+        <PlaceForm
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          place={this.state.place}
+          handleRateChange={this.handleRateChange}
+        />
+      </div>
     )
   }
 }

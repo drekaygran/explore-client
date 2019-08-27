@@ -46,7 +46,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <main className="container">
+        <main className="container-fluid">
           <Route
             exact path='/places'
             render={() => (
@@ -82,10 +82,6 @@ class App extends Component {
                 alert={this.alert}
               />
             )}
-          />
-          <Route
-            path='/map'
-            component={MyMap}
           />
           <AuthenticatedRoute
             user={user}
@@ -127,6 +123,10 @@ class App extends Component {
                 alert={this.alert}
               />
             )}
+          />
+          <Route
+            exact path='/'
+            component={MyMap}
           />
         </main>
       </Fragment>

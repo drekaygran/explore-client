@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -34,6 +34,7 @@ class SignIn extends Component {
         variant: 'success'
       }))
       .then(() => history.push('/'))
+      .then(<Redirect to={'/places'} />)
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })

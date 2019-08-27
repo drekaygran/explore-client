@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
-
 import Spinner from 'react-bootstrap/Spinner'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
+
+import apiUrl from '../../apiConfig'
+import Wrapper from '../App/Wrapper'
 
 class Places extends Component {
   constructor () {
@@ -32,12 +33,10 @@ class Places extends Component {
     // console.log(this.state.places)
     const placesJsx = this.state.places.map(place => (
       <Card border='dark' key={place.id} style={{ minWidth: '30vh' }}>
-        <Card.Header>
-          <Link style={{ color: 'black' }} to={`/places/${place.id}`} >{place.name}</Link>
-        </Card.Header>
-        <Card.Body style={{ color: 'grey' }}>
-          {place.description}
-        </Card.Body>
+        <Link style={{ color: 'black' }} to={`/places/${place.id}`}>
+          <Card.Header>{place.name}</Card.Header>
+          <Card.Body style={{ color: 'grey' }}>{place.description}</Card.Body>
+        </Link>
       </Card>
     ))
 
@@ -50,9 +49,11 @@ class Places extends Component {
     }
 
     return (
-      <CardColumns style={{ paddingTop: '5vh' }}>
-        {this.state.places.length ? placesJsx : <li>No places found</li>}
-      </CardColumns>
+      <Wrapper>
+        <CardColumns style={{ paddingTop: '5vh' }}>
+          {this.state.places.length ? placesJsx : <li>No places found</li>}
+        </CardColumns>
+      </Wrapper>
     )
   }
 }
