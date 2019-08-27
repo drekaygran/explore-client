@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
+import Rating from 'react-rating'
+
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import apiUrl from '../../apiConfig'
@@ -77,7 +79,12 @@ class Place extends Component {
           <Fragment>
             <h1>{place.name}</h1>
             <h2>{place.description || 'No description available'}</h2>
-            {(this.props.user && place) && this.props.user._id === place.owner ? <ButtonToolbar> <Button href={`#places/${place.id}/edit`}>Edit</Button> <Button variant="danger" onClick={handleShow}>Delete</Button> </ButtonToolbar> : ''}
+            <h2>Rating:</h2>
+            <Rating
+              initialRating={place.rating}
+              readonly
+            />
+            {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar> <Button href={`#places/${place.id}/edit`}>Edit</Button> <Button variant="danger" onClick={handleShow}>Delete</Button> </ButtonToolbar> : ''}
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>

@@ -24,6 +24,10 @@ class EditPlace extends Component {
     this.setState({ place: { ...this.state.place, [event.target.name]: event.target.value } })
   }
 
+  handleRateChange = event => {
+    this.setState({ place: { ...this.state.place, rating: event } })
+  }
+
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -63,6 +67,7 @@ class EditPlace extends Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         place={this.state.place}
+        handleRateChange={this.handleRateChange}
       />
     )
   }

@@ -9,12 +9,18 @@ class CreatePlace extends Component {
   state = {
     place: {
       name: '',
-      description: ''
+      description: '',
+      rating: ''
     }
   }
 
   handleChange = event => {
     this.setState({ place: { ...this.state.place, [event.target.name]: event.target.value } })
+  }
+
+  handleRateChange = event => {
+    console.log(event)
+    this.setState({ place: { ...this.state.place, rating: event } })
   }
 
   handleSubmit = event => {
@@ -44,6 +50,7 @@ class CreatePlace extends Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         place={this.state.place}
+        handleRateChange={this.handleRateChange}
       />
     )
   }

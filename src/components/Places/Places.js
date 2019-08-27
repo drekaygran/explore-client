@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-import ListGroup from 'react-bootstrap/ListGroup'
 import Spinner from 'react-bootstrap/Spinner'
+import Card from 'react-bootstrap/Card'
+import CardColumns from 'react-bootstrap/CardColumns'
 
 class Places extends Component {
   constructor () {
@@ -30,9 +31,14 @@ class Places extends Component {
   render () {
     // console.log(this.state.places)
     const placesJsx = this.state.places.map(place => (
-      <ListGroup.Item key={place.id}>
-        <Link to={`/places/${place.id}`} >{place.name}</Link>
-      </ListGroup.Item>
+      <Card border='dark' key={place.id} style={{ minWidth: '30vh' }}>
+        <Card.Header>
+          <Link style={{ color: 'black' }} to={`/places/${place.id}`} >{place.name}</Link>
+        </Card.Header>
+        <Card.Body style={{ color: 'grey' }}>
+          {place.description}
+        </Card.Body>
+      </Card>
     ))
 
     if (this.state.isLoading) {
@@ -44,9 +50,9 @@ class Places extends Component {
     }
 
     return (
-      <ListGroup>
+      <CardColumns style={{ paddingTop: '5vh' }}>
         {this.state.places.length ? placesJsx : <li>No places found</li>}
-      </ListGroup>
+      </CardColumns>
     )
   }
 }
