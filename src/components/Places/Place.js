@@ -83,8 +83,8 @@ class Place extends Component {
           addressArr.push(`${key}: ${value}`)
         }
       }
-    } else {
-      addressButton = '/create-address'
+    } else if (place) {
+      addressButton = `#places/${this.props.match.params.id}/create-address`
     }
 
     return (

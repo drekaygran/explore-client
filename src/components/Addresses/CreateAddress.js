@@ -3,31 +3,30 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
-import PlaceForm from './PlaceForm'
+import AddressForm from './AddressForm'
 
-class CreatePlace extends Component {
+class CreateAddress extends Component {
   state = {
-    place: {
-      name: '',
-      description: '',
-      rating: ''
+    address: {
+      street_1: '',
+      street_2: '',
+      city: '',
+      state: '',
+      zip_code: '',
+      place_id: this.props.match.params.id
     }
   }
 
   handleChange = event => {
-    this.setState({ place: { ...this.state.place, [event.target.name]: event.target.value } })
-  }
-
-  handleRateChange = event => {
-    console.log(event)
-    this.setState({ place: { ...this.state.place, rating: event } })
+    this.setState({ address: { ...this.state.address, [event.target.name]: event.target.value } })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+    console.log(this.state.address)
     axios({
       method: 'POST',
-      url: `${apiUrl}/places`,
+      url: `${apiUrl}/addresses`,
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
       },
@@ -36,10 +35,10 @@ class CreatePlace extends Component {
       .then(res => {
         this.props.alert({
           heading: 'Success!!',
-          message: 'You created a place!',
+          message: 'You created a address!',
           variant: 'success'
         })
-        this.props.history.push(`/places/${res.data.place.id}`)
+        this.props.history.push(`/addresses/${res.data.address.id}`)
       })
       .catch(console.error)
   }
@@ -47,15 +46,14 @@ class CreatePlace extends Component {
   render () {
     return (
       <div style={{ paddingTop: '4vh' }}>
-        <PlaceForm
+        <AddressForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          place={this.state.place}
-          handleRateChange={this.handleRateChange}
+          address={this.state.address}
         />
       </div>
     )
   }
 }
 
-export default withRouter(CreatePlace)
+export default withRouter(CreateAddress)

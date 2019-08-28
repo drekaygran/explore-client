@@ -10,7 +10,10 @@ class CreatePlace extends Component {
     place: {
       name: '',
       description: '',
-      rating: ''
+      rating: '',
+      addresses: [{
+        place_id: ''
+      }]
     }
   }
 
@@ -19,12 +22,13 @@ class CreatePlace extends Component {
   }
 
   handleRateChange = event => {
-    console.log(event)
     this.setState({ place: { ...this.state.place, rating: event } })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+    // this.setState({ place: { ...this.state.place, addresses: [{ place_id: this.state.place.id }] } })
+    // console.log(this.state.place)
     axios({
       method: 'POST',
       url: `${apiUrl}/places`,

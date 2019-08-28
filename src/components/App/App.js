@@ -8,11 +8,15 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+
 import Places from '../Places/Places'
 import Place from '../Places/Place'
 import CreatePlace from '../Places/CreatePlace'
 import EditPlace from '../Places/EditPlace'
+
 import EditAddress from '../Addresses/EditAddress'
+import CreateAddress from '../Addresses/CreateAddress'
+
 import MyMap from '../Places/MyMap'
 
 class App extends Component {
@@ -137,9 +141,12 @@ class App extends Component {
           />
           <AuthenticatedRoute
             user={user}
-            exact path='/create-address'
+            exact path='/places/:id/create-address'
             render={() => (
-              <h1>Boo!</h1>
+              <CreateAddress
+                user={user}
+                alert={this.alert}
+              />
             )}
           />
           <Route

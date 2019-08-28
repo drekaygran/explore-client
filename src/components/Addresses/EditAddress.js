@@ -11,7 +11,6 @@ class EditAddress extends Component {
   }
 
   async componentDidMount () {
-    console.log(this.props.match.params)
     try {
       const response = await axios({
         method: 'GET',
@@ -39,7 +38,7 @@ class EditAddress extends Component {
     event.preventDefault()
     axios({
       method: 'PATCH',
-      url: `${apiUrl}/places/${this.state.place.id}`,
+      url: `${apiUrl}/addresses/${this.state.address.id}`,
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
       },
@@ -51,7 +50,7 @@ class EditAddress extends Component {
           message: 'You updated this address!',
           variant: 'success'
         })
-        this.props.history.push(`/places/${this.state.address.id}`)
+        this.props.history.push(`/addresses/${this.state.address.id}`)
       })
       .catch(error => {
         console.error(error)
