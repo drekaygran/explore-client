@@ -4,7 +4,7 @@ import axios from 'axios'
 import Rating from 'react-rating'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import Accordion from 'react-bootstrap/Accordion'
+// import Accordion from 'react-bootstrap/Accordion'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Col from 'react-bootstrap/Col'
 
@@ -26,7 +26,6 @@ class Place extends Component {
     // console.log(this.props.match.params.id)
     try {
       const response = await axios(`${apiUrl}/places/${this.props.match.params.id}`)
-      console.log(response.data)
       this.setState({ place: response.data.place })
     } catch (error) {
       this.props.alert({
@@ -76,19 +75,23 @@ class Place extends Component {
       return <Redirect to={'/places'} />
     }
     const addressArr = []
+    let addressButton
     if (place && place.addresses[0]) {
+      addressButton = `#addresses/${place.addresses[0].id}/edit`
       for (const [key, value] of Object.entries(place.addresses[0])) {
         if (value) {
           addressArr.push(`${key}: ${value}`)
         }
       }
+    } else {
+      addressButton = '/create-address'
     }
 
     return (
       <div>
         { place && (
           <Wrapper>
-            <Col className="col-sm-10 col-md-8 mx-auto mt-5">
+            <Col xs={12} md={6} className="mx-auto">
               <h3>{place.name}</h3>
               <h4>{place.description || 'No description available'}</h4>
               <h4>Rating:</h4>
@@ -99,14 +102,8 @@ class Place extends Component {
               <h4>Address:</h4>
               {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar>
                 <Button className="mr-2" href={`#places/${place.id}/edit`}>Edit</Button>
-
-                <Accordion>
-                  <Accordion.Toggle as={Button} eventKey="1" className="mr-2" variant="secondary" href={`#places/${place.id}/address`}>Update Address
-                  </Accordion.Toggle>
-                  <Accordion.Collapse eventKey="1">
-                   Hello! Address form component here
-                  </Accordion.Collapse>
-                </Accordion>
+                <Button className="mr-2" variant="secondary" href={addressButton}>Update Address
+                </Button>
                 <Button variant="danger" onClick={handleShow}>Delete</Button>
               </ButtonToolbar> : ''}
               <Modal show={show} onHide={handleClose}>

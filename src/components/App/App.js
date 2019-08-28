@@ -12,6 +12,7 @@ import Places from '../Places/Places'
 import Place from '../Places/Place'
 import CreatePlace from '../Places/CreatePlace'
 import EditPlace from '../Places/EditPlace'
+import EditAddress from '../Addresses/EditAddress'
 import MyMap from '../Places/MyMap'
 
 class App extends Component {
@@ -48,15 +49,6 @@ class App extends Component {
         ))}
         <main className="container-fluid">
           <Route
-            exact path='/places'
-            render={() => (
-              <Places
-                alert={this.alert}
-                user={this.user}
-              />
-            )}
-          />
-          <Route
             path='/sign-up'
             render={() => (
               <SignUp
@@ -71,15 +63,6 @@ class App extends Component {
               <SignIn
                 alert={this.alert}
                 setUser={this.setUser}
-              />
-            )}
-          />
-          <Route
-            exact path='/places/:id'
-            render={() => (
-              <Place
-                user={user}
-                alert={this.alert}
               />
             )}
           />
@@ -104,6 +87,24 @@ class App extends Component {
               />
             )}
           />
+          <Route
+            exact path='/places'
+            render={() => (
+              <Places
+                alert={this.alert}
+                user={this.user}
+              />
+            )}
+          />
+          <Route
+            exact path='/places/:id'
+            render={() => (
+              <Place
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
           <AuthenticatedRoute
             user={user}
             path='/create-place'
@@ -122,6 +123,23 @@ class App extends Component {
                 user={user}
                 alert={this.alert}
               />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact path='/addresses/:id/edit'
+            render={() => (
+              <EditAddress
+                user={user}
+                alert={this.alert}
+              />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact path='/create-address'
+            render={() => (
+              <h1>Boo!</h1>
             )}
           />
           <Route
