@@ -50,7 +50,6 @@ class EditAddress extends Component {
           message: 'You updated this address!',
           variant: 'success'
         })
-        this.props.history.push(`/addresses/${this.state.address.id}`)
       })
       .catch(error => {
         console.error(error)

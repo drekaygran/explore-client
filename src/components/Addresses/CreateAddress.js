@@ -23,7 +23,6 @@ class CreateAddress extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(this.state.address)
     axios({
       method: 'POST',
       url: `${apiUrl}/addresses`,
@@ -32,13 +31,13 @@ class CreateAddress extends Component {
       },
       data: this.state
     })
+      .then(this.props.history.push(`/places/${this.props.match.params.id}`))
       .then(res => {
         this.props.alert({
           heading: 'Success!!',
-          message: 'You created a address!',
+          message: 'You created an address!',
           variant: 'success'
         })
-        this.props.history.push(`/addresses/${res.data.address.id}`)
       })
       .catch(console.error)
   }
