@@ -5,6 +5,7 @@ import Rating from 'react-rating'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import styles from './AddressButton.css'
 // import Col from 'react-bootstrap/Col'
 // import { Map, GoogleApiWrapper } from 'google-maps-react'
 
@@ -31,7 +32,6 @@ class Place extends Component {
   }
 
   async componentDidMount () {
-    // console.log(this.props.match.params.id)
     try {
       // GET place
       const response = await axios(`${apiUrl}/places/${this.props.match.params.id}`)
@@ -43,7 +43,6 @@ class Place extends Component {
         for (const [key, value] of Object.entries(this.state.address)) {
           (key === 'id' || key === 'place') ? addressToGeocode[key] = '' : addressToGeocode[key] = value
         }
-        console.log(JSON.stringify(Object.values(addressToGeocode)))
         Geocode.fromAddress(JSON.stringify(Object.values(addressToGeocode)))
           .then(response => {
             const { lat, lng } = response.results[0].geometry.location
@@ -53,7 +52,6 @@ class Place extends Component {
                 lng: lng
               }
             })
-            console.log(this.state.center)
           },
           error => {
             console.error(error)
@@ -169,7 +167,7 @@ class Place extends Component {
               {addressArr[0] ? <ul style={{ listStyle: 'none' }}>{addressArr.map(addressItem => <li key={addressItem}>{addressItem}</li>)}</ul> : <p>No address provided</p>}
               {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar>
                 <Button className="mr-2" href={`#places/${place.id}/edit`}>Edit</Button>
-                <Button className="mr-2" variant="secondary" href={addressButton}>Update Address
+                <Button className={`mr-2 ${addressArr[0] ? '' : styles.addressButtonShake}`} variant="secondary" href={addressButton}>Update Address
                 </Button>
                 <Button variant="danger" onClick={handleShow}>Delete</Button>
               </ButtonToolbar> : ''}
@@ -191,7 +189,7 @@ class Place extends Component {
             <div className="col-sm-11 col-md-6 mx-auto mt-5">
               <MyMap
                 center={center}
-                zoom={16}
+                zoom={17}
               >
               </MyMap>
             </div>

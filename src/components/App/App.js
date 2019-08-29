@@ -97,7 +97,7 @@ class App extends Component {
             render={() => (
               <Places
                 alert={this.alert}
-                user={this.user}
+                user={user}
               />
             )}
           />

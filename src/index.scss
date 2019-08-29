@@ -1,4 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
+@light-mustard: #f0dd92;
+@sunshine: #f0dd92;
+@pastel-lime: #d6e4aa;
+@light-green: #83b582;
 
 body {
   min-height: 100vh;
@@ -8,6 +12,14 @@ main {
   align-items: center;
   display: flex;
   justify-content: center;
+
+  .bg-pastel-lime {
+    background-color: pastel-lime;
+  }
+
+  .bg-light-green {
+    background-color: light-green;
+  }
 
   div:first-child {
     width: 100%;

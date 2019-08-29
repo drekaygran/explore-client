@@ -23,6 +23,7 @@ const MyMap = ({ center, zoom }) => (
       defaultCenter={eastBoston}
       center={center}
       defaultZoom={14}
+      zoom={zoom}
     >
       {
       // <SetCenter
