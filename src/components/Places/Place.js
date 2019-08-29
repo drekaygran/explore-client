@@ -155,16 +155,16 @@ class Place extends Component {
         { place && (
           <React.Fragment>
             <div className="col-sm-12 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
-              <h3>{place.name}</h3>
-              <h4>{place.description || 'No description available'}</h4>
-              <h4>Rating:</h4>
+              <h2 className='place-data'>{place.name}</h2>
+              <h4 className='place-data'>Description:</h4>
+              <p className='place-data'>{place.description || 'No description available'}</p>
+              <h4 className='place-data'>Rating:</h4>
               <Rating
                 initialRating={place.rating}
                 readonly
               />
-              <h4>Address:</h4>
-              <br></br>
-              {addressArr[0] ? <ul style={{ listStyle: 'none' }}>{addressArr.map(addressItem => <li key={addressItem}>{addressItem}</li>)}</ul> : <p>No address provided</p>}
+              <h4 className='place-data'>Address:</h4>
+              {addressArr[0] ? <div>{addressArr.map(addressItem => <p key={addressItem}>{addressItem}</p>)}</div> : <p>No address provided</p>}
               {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar>
                 <Button className="mr-2 button primary" href={`#places/${place.id}/edit`}>Edit</Button>
                 <Button className={`mr-2 button secondary ${addressArr[0] ? '' : styles.addressButtonShake}`} href={addressButton}>Update Address

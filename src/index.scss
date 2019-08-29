@@ -26,10 +26,8 @@ body {
     font-size: 11vh;
   }
 
-  .title {
-    font-family: 'Satisfy', cursive;
-    font-size: 2rem;
-    font-weight: 400;
+  h2 {
+    font-size: 8vh;
   }
 
   .button {
@@ -39,14 +37,37 @@ body {
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 1px;
+    &:hover {
+      background-color: darken($light-green, 30%);
+      border: darken($light-green, 30%);
+    }
   }
 
   .button.secondary {
     background-color: $purple;
+    &:hover {
+      background-color: darken($purple, 20%);
+      border: darken($purple, 20%);
+    }
   }
 
   .button.danger {
     background-color: $danger;
+    &:hover {
+      background-color: darken($danger, 20%);
+      border: darken($danger, 20%);
+    }
+  }
+
+  .place-data {
+    margin: 1rem auto;
+  }
+
+  .title {
+    color: $peach;
+    font-family: 'Satisfy', cursive;
+    font-size: 2rem;
+    font-weight: 400;
   }
 }
 
@@ -67,11 +88,6 @@ main {
     width: 100%;
   }
 }
-
-
-
-
-
 
 #root {
   display: grid;

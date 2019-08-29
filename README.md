@@ -1,10 +1,3 @@
-# still need #
-
-Your front-end repo's README should also have:
-
- An embedded screenshot of the app
-
-
 ## Let's Explore Eastie! ##
 
 Welcome to my app.  If you're here, you're probably either wondering where all the great spots are in East Boston or you want to share your knowledge about them with others.  Explore Eastie is a place to share and find hidden gems in the neighborhood.  It's perfect for locals and travelers alike.  Simply create an account to browse places, learn about them, and see the location.  You can also create new places and share what you like or dislike about them.
@@ -40,6 +33,8 @@ Welcome to my app.  If you're here, you're probably either wondering where all t
 - Javascript
 - Ruby on Rails
 - Heroku
+- Axios
+- Bootstrap
 
 ### Unsolved Problems: ###
 - Insert Marker on Map
@@ -57,3 +52,10 @@ If you'd like your own version of this project follow these steps.
 - Create a new branch, for your work.
 - Checkout to the new branch.
 - Install dependencies with npm install.
+
+
+<img src="./public/images/home-page.png" width=400px>
+
+<img src="./public/images/places-page.png" width=400px>
+
+<img src="./public/images/place.png" width=400px>

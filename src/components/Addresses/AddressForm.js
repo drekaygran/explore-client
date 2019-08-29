@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 const AddressForm = ({ address, handleChange, handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
+    <h4>{address.place.name}</h4>
     <Form.Group controlId="formBasicEmail">
       <Form.Label>Street</Form.Label>
       <Form.Control
