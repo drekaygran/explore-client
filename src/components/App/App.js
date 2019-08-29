@@ -157,6 +157,7 @@ class App extends Component {
               <div className="row">
                 <div className="col-sm-12 col-md-6 mx-auto mt-5">
                   <h1>Hey, let&apos;s explore eastie!</h1>
+                  <br></br>
                   <h3>Share and find great spots in East Boston.</h3>
                 </div>
                 <div className="col-sm-12 col-md-6" style={{ marginRight: '-30px' }}>
