@@ -1,6 +1,6 @@
 {
-  "name": "explore-client",
-  "homepage": "https://<USERNAME>.github.io/<REPO NAME>",
+  "name": "explore-eastie",
+  "homepage": "https://drekaygran.github.io/explore-eastie",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
