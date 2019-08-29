@@ -71,7 +71,7 @@ class Places extends Component {
     return (
       <Wrapper>
         <CardColumns style={{ paddingTop: '5vh' }}>
-          {this.state.places.length ? placesJsx : <li>No places found</li>}
+          {this.state.places.length ? placesJsx : <li>No places yet. Add one!</li>}
         </CardColumns>
       </Wrapper>
     )
