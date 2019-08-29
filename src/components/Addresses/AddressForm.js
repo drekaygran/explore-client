@@ -55,7 +55,7 @@ const AddressForm = ({ address, handleChange, handleSubmit }) => (
         name="zip_code"
       />
     </Form.Group>
-    <Button variant="primary" type="submit">
+    <Button className="button primary" type="submit">
       Submit
     </Button>
   </Form>)

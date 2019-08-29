@@ -1,17 +1,48 @@
 @import '~bootstrap/scss/bootstrap';
-@light-mustard: #f0dd92;
-@sunshine: #ffffc5;
-@pastel-lime: #d6e4aa;
-@light-green: #83b582;
-@dark: #343a40;
+$charcoal: #6A6A6A;
+$peach: #F3D0B5;
+$khaki: #F0E5D3;
+$light-green: #A5AA93;
+$dark: #343a40;
+$purple: #9394aa;
+$danger: #aa9399;
 
 body {
+  background-color: lighten($khaki, 20%);
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
   min-height: 100vh;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+  }
+
+  .button {
+    background-color: $light-green;
+    border: $light-green;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  .button.secondary {
+    background-color: $purple;
+  }
+
+  .button.danger {
+    background-color: $danger;
+  }
 }
 
 main {
   align-items: center;
-  background-color: sunshine;
   display: flex;
   justify-content: center;
 
@@ -27,6 +58,11 @@ main {
     width: 100%;
   }
 }
+
+
+
+
+
 
 #root {
   display: grid;

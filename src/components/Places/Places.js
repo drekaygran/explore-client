@@ -35,13 +35,13 @@ class Places extends Component {
     // const legend = (
     //   <CardDeck className='row'>
     //     <Card border='dark' className='p-auto col-sm-6 col-md-' style={{
-    //       background: '#83b582'
+    //       background: '#A5AA93'
     //     }}
     //     >Your places</Card>
     //     <Card border='dark' style={{
     //       maxWidth: '15vh',
     //       maxHeight: '10vh',
-    //       background: '#d6e4aa'
+    //       background: '#F3D0B5'
     //     }}
     //     >Other Places</Card>
     //   </CardDeck>
@@ -49,7 +49,7 @@ class Places extends Component {
     const placesJsx = this.state.places.map(place => (
       <Card border='dark' key={place.id} style={{
         minWidth: '30vh',
-        background: place.user.id === this.props.user.id ? '#83b582' : '#d6e4aa'
+        background: place.user.id === this.props.user.id ? '#A5AA93' : '#F3D0B5'
       }}
       >
         <Link style={{ color: '#343a40' }} to={`/places/${place.id}`}>

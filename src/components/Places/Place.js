@@ -165,10 +165,10 @@ class Place extends Component {
               <br></br>
               {addressArr[0] ? <ul style={{ listStyle: 'none' }}>{addressArr.map(addressItem => <li key={addressItem}>{addressItem}</li>)}</ul> : <p>No address provided</p>}
               {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar>
-                <Button className="mr-2" href={`#places/${place.id}/edit`}>Edit</Button>
-                <Button className={`mr-2 ${addressArr[0] ? '' : styles.addressButtonShake}`} variant="secondary" href={addressButton}>Update Address
+                <Button className="mr-2 button primary" href={`#places/${place.id}/edit`}>Edit</Button>
+                <Button className={`mr-2 button secondary ${addressArr[0] ? '' : styles.addressButtonShake}`} href={addressButton}>Update Address
                 </Button>
-                <Button variant="danger" onClick={handleShow}>Delete</Button>
+                <Button className="button danger" onClick={handleShow}>Delete</Button>
               </ButtonToolbar> : ''}
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -176,10 +176,10 @@ class Place extends Component {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete this place?</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <Button className="button secondary" onClick={handleClose}>
                      No, I changed my mind.
                   </Button>
-                  <Button variant="danger" onClick={deleteAndCloseModal}>
+                  <Button className="button danger" onClick={deleteAndCloseModal}>
                      Yes, delete this place
                   </Button>
                 </Modal.Footer>

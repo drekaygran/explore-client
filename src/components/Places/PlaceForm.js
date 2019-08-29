@@ -36,7 +36,7 @@ const PlaceForm = ({ place, handleChange, handleRateChange, handleSubmit }) => (
         initialRating={place.rating}
       />
     </Form.Group>
-    <Button variant="primary" type="submit">
+    <Button className="button primary" type="submit">
       Submit
     </Button>
   </Form>)
