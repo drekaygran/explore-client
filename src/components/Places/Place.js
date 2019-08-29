@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import styles from './AddressButton.css'
 // import Col from 'react-bootstrap/Col'
-// import { Map, GoogleApiWrapper } from 'google-maps-react'
 
 import apiUrl from '../../apiConfig'
 import MyMap from './MyMap'
@@ -186,7 +185,7 @@ class Place extends Component {
                 </Modal.Footer>
               </Modal>
             </div>
-            <div className="col-sm-11 col-md-6 mx-auto mt-5">
+            <div className="col-sm-12 col-md-6 p-0" style={{ marginRight: '-30px' }}>
               <MyMap
                 center={center}
                 zoom={17}

@@ -51,7 +51,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <main className="container">
+        <main className="container-fluid">
           <Route
             path='/sign-up'
             render={() => (
@@ -155,10 +155,10 @@ class App extends Component {
             exact path='/'
             render={() => (
               <div className="row">
-                <div className="col-sm-11 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
-                  <h1>Boo!</h1>
-                </div>
                 <div className="col-sm-11 col-md-6 mx-auto mt-5">
+                  <h1>Hey, let&apos;s explore eastie!</h1>
+                </div>
+                <div className="col-sm-12 col-md-6" style={{ marginRight: '-30px' }}>
                   <MyMap
                     center={{
                       lat: 42.376612,

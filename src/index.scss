@@ -1,8 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 @light-mustard: #f0dd92;
-@sunshine: #f0dd92;
+@sunshine: #ffffc5;
 @pastel-lime: #d6e4aa;
 @light-green: #83b582;
+@dark: #343a40;
 
 body {
   min-height: 100vh;
@@ -10,6 +11,7 @@ body {
 
 main {
   align-items: center;
+  background-color: sunshine;
   display: flex;
   justify-content: center;
 
