@@ -22,7 +22,7 @@ const MyMap = ({ center, zoom }) => (
       bootstrapURLKeys={{ key: 'AIzaSyDHOal4qk8UQoORBP2WCWQ9ccoxzm0t5N0' }}
       defaultCenter={eastBoston}
       center={center}
-      defaultZoom={14}
+      defaultZoom={13}
       zoom={zoom}
     >
       {

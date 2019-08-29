@@ -26,7 +26,7 @@ class Place extends Component {
         lat: 42.376612,
         lng: -71.032973
       },
-      text: 'Welcome to East Boston!'
+      zoom: 13
     }
   }
 
@@ -49,7 +49,8 @@ class Place extends Component {
               center: {
                 lat: lat,
                 lng: lng
-              }
+              },
+              zoom: 17
             })
           },
           error => {
@@ -104,7 +105,7 @@ class Place extends Component {
   // }
 
   render () {
-    const { place, show, deleted, center } = this.state
+    const { place, show, deleted, center, zoom } = this.state
     const handleShow = () => this.setState({ show: true })
     const handleClose = () => this.setState({ show: false })
     const deleteAndCloseModal = () => {
@@ -153,7 +154,7 @@ class Place extends Component {
       <div className="row">
         { place && (
           <React.Fragment>
-            <div className="col-sm-11 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
+            <div className="col-sm-12 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
               <h3>{place.name}</h3>
               <h4>{place.description || 'No description available'}</h4>
               <h4>Rating:</h4>
@@ -188,7 +189,7 @@ class Place extends Component {
             <div className="col-sm-12 col-md-6 p-0" style={{ marginRight: '-30px' }}>
               <MyMap
                 center={center}
-                zoom={17}
+                zoom={zoom}
               >
               </MyMap>
             </div>

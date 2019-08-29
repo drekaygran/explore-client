@@ -155,8 +155,9 @@ class App extends Component {
             exact path='/'
             render={() => (
               <div className="row">
-                <div className="col-sm-11 col-md-6 mx-auto mt-5">
+                <div className="col-sm-12 col-md-6 mx-auto mt-5">
                   <h1>Hey, let&apos;s explore eastie!</h1>
+                  <h3>Share and find great spots in East Boston.</h3>
                 </div>
                 <div className="col-sm-12 col-md-6" style={{ marginRight: '-30px' }}>
                   <MyMap
