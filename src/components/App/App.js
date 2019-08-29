@@ -51,7 +51,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <main className="container-fluid">
+        <main className="container">
           <Route
             path='/sign-up'
             render={() => (
@@ -91,7 +91,8 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          <AuthenticatedRoute
+            user={user}
             exact path='/places'
             render={() => (
               <Places
@@ -100,7 +101,8 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          <AuthenticatedRoute
+            user={user}
             exact path='/places/:id'
             render={() => (
               <Place
@@ -151,7 +153,22 @@ class App extends Component {
           />
           <Route
             exact path='/'
-            component={MyMap}
+            render={() => (
+              <div className="row">
+                <div className="col-sm-11 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
+                  <h1>Boo!</h1>
+                </div>
+                <div className="col-sm-11 col-md-6 mx-auto mt-5">
+                  <MyMap
+                    center={{
+                      lat: 42.376612,
+                      lng: -71.032973
+                    }}
+                    zoom={14}
+                  />
+                </div>
+              </div>
+            )}
           />
         </main>
       </Fragment>

@@ -20,7 +20,6 @@ class EditAddress extends Component {
         }
       })
       this.setState({ address: response.data.address })
-      console.log(this.state.address)
     } catch (error) {
       this.props.alert({
         heading: 'Error',

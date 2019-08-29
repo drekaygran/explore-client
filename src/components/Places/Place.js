@@ -4,29 +4,63 @@ import axios from 'axios'
 import Rating from 'react-rating'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-// import Accordion from 'react-bootstrap/Accordion'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Col from 'react-bootstrap/Col'
+// import Col from 'react-bootstrap/Col'
+// import { Map, GoogleApiWrapper } from 'google-maps-react'
 
 import apiUrl from '../../apiConfig'
-import Wrapper from '../App/Wrapper'
+import MyMap from './MyMap'
+import Geocode from 'react-geocode'
+Geocode.setApiKey('AIzaSyBTP0q6wDlmvYjDJVE5Oa_ZeiSfX1-4fR4')
 
 class Place extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       place: null,
       show: false,
-      deleted: false
+      deleted: false,
+      address: null,
+      center: {
+        lat: 42.376612,
+        lng: -71.032973
+      },
+      text: 'Welcome to East Boston!'
     }
   }
 
   async componentDidMount () {
     // console.log(this.props.match.params.id)
     try {
+      // GET place
       const response = await axios(`${apiUrl}/places/${this.props.match.params.id}`)
       this.setState({ place: response.data.place })
+      // If address exist set that too
+      if (this.state.place.addresses[0]) {
+        this.setState({ address: this.state.place.addresses[0] })
+        const addressToGeocode = {}
+        for (const [key, value] of Object.entries(this.state.address)) {
+          (key === 'id' || key === 'place') ? addressToGeocode[key] = '' : addressToGeocode[key] = value
+        }
+        console.log(JSON.stringify(Object.values(addressToGeocode)))
+        Geocode.fromAddress(JSON.stringify(Object.values(addressToGeocode)))
+          .then(response => {
+            const { lat, lng } = response.results[0].geometry.location
+            this.setState({
+              center: {
+                lat: lat,
+                lng: lng
+              }
+            })
+            console.log(this.state.center)
+          },
+          error => {
+            console.error(error)
+          })
+      } else {
+        // display map with no marker
+      }
     } catch (error) {
       this.props.alert({
         heading: 'Error',
@@ -63,8 +97,17 @@ class Place extends Component {
       })
   }
 
+  // clemson = () => {
+  //   this.setState({
+  //     center: {
+  //       lat: 34.695894,
+  //       lng: -82.825436
+  //     }
+  //   })
+  // }
+
   render () {
-    const { place, show, deleted } = this.state
+    const { place, show, deleted, center } = this.state
     const handleShow = () => this.setState({ show: true })
     const handleClose = () => this.setState({ show: false })
     const deleteAndCloseModal = () => {
@@ -80,18 +123,40 @@ class Place extends Component {
       addressButton = `#addresses/${place.addresses[0].id}/edit`
       for (const [key, value] of Object.entries(place.addresses[0])) {
         if (value) {
-          addressArr.push(`${key}: ${value}`)
+          let label
+          switch (key) {
+          case 'id':
+            continue
+          case 'street_1':
+            label = 'Street'
+            break
+          case 'street_2':
+            label = 'Apt/Unit #'
+            break
+          case 'city':
+            label = 'City'
+            break
+          case 'state':
+            label = 'State'
+            break
+          case 'zip_code':
+            label = 'Zip Code'
+            break
+          }
+          addressArr.push(`${label}: ${value}`)
         }
       }
     } else if (place) {
       addressButton = `#places/${this.props.match.params.id}/create-address`
     }
 
+    // this.clemson()
+
     return (
-      <div>
+      <div className="row">
         { place && (
-          <Wrapper>
-            <Col xs={12} md={6} className="mx-auto">
+          <React.Fragment>
+            <div className="col-sm-11 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
               <h3>{place.name}</h3>
               <h4>{place.description || 'No description available'}</h4>
               <h4>Rating:</h4>
@@ -100,6 +165,8 @@ class Place extends Component {
                 readonly
               />
               <h4>Address:</h4>
+              <br></br>
+              {addressArr[0] ? <ul style={{ listStyle: 'none' }}>{addressArr.map(addressItem => <li key={addressItem}>{addressItem}</li>)}</ul> : <p>No address provided</p>}
               {(this.props.user && place) && this.props.user.id === place.user.id ? <ButtonToolbar>
                 <Button className="mr-2" href={`#places/${place.id}/edit`}>Edit</Button>
                 <Button className="mr-2" variant="secondary" href={addressButton}>Update Address
@@ -120,10 +187,15 @@ class Place extends Component {
                   </Button>
                 </Modal.Footer>
               </Modal>
-              <br></br>
-              {addressArr[0] ? <ul style={{ listStyle: 'none' }}>{addressArr.map(addressItem => <li key={addressItem}>{addressItem}</li>)}</ul> : <p>no address</p>}
-            </Col>
-          </Wrapper>
+            </div>
+            <div className="col-sm-11 col-md-6 mx-auto mt-5">
+              <MyMap
+                center={center}
+                zoom={16}
+              >
+              </MyMap>
+            </div>
+          </React.Fragment>
         )}
       </div>
     )
