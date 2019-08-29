@@ -52,12 +52,14 @@ class Place extends Component {
               },
               zoom: 17
             })
-          },
-          error => {
-            console.error(error)
           })
-      } else {
-        // display map with no marker
+          .catch(() => {
+            this.props.alert({
+              heading: 'Error',
+              message: 'Something went wrong',
+              variant: 'danger'
+            })
+          })
       }
     } catch (error) {
       this.props.alert({

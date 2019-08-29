@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
@@ -7,7 +7,8 @@ import AddressForm from './AddressForm'
 
 class EditAddress extends Component {
   state = {
-    address: null
+    address: null,
+    updated: false
   }
 
   async componentDidMount () {
@@ -49,10 +50,10 @@ class EditAddress extends Component {
           message: 'You updated this address!',
           variant: 'success'
         })
+        console.log('this is a test right now')
       })
-      .then(this.props.history.push(`/places/${this.state.address.place.id}`))
-      .catch(error => {
-        console.error(error)
+      .then(this.setState({ updated: true }))
+      .catch(() => {
         this.props.alert({
           heading: 'Error',
           message: 'Something went wrong',
@@ -65,6 +66,15 @@ class EditAddress extends Component {
     if (!this.state.address) {
       return (
         <h1>loading. hold on.</h1>
+      )
+    }
+    if (this.state.updated) {
+      return (
+        <Redirect to={
+          {
+            pathname: '/places'
+          }
+        }/>
       )
     }
     return (

@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
-$charcoal: #6A6A6A;
-$peach: #F3D0B5;
-$khaki: #F0E5D3;
-$light-green: #A5AA93;
+$charcoal: #6a6a6a;
 $dark: #343a40;
-$purple: #9394aa;
 $danger: #aa9399;
+$khaki: #f0e5d3;
+$light-green: #a5aa93;
+$peach: #f3d0b5;
+$purple: #9394aa;
 
 body {
   background-color: lighten($khaki, 20%);
@@ -37,22 +37,25 @@ body {
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 1px;
+
     &:hover {
       background-color: darken($light-green, 30%);
       border: darken($light-green, 30%);
     }
   }
 
-  .button.secondary {
+  .secondary {
     background-color: $purple;
+
     &:hover {
       background-color: darken($purple, 20%);
       border: darken($purple, 20%);
     }
   }
 
-  .button.danger {
+  .danger {
     background-color: $danger;
+
     &:hover {
       background-color: darken($danger, 20%);
       border: darken($danger, 20%);

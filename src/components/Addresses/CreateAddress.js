@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
@@ -14,7 +14,8 @@ class CreateAddress extends Component {
       state: '',
       zip_code: '',
       place_id: this.props.match.params.id
-    }
+    },
+    updated: false
   }
 
   handleChange = event => {
@@ -31,7 +32,7 @@ class CreateAddress extends Component {
       },
       data: this.state
     })
-      .then(this.props.history.push(`/places/${this.props.match.params.id}`))
+      .then(this.setState({ updated: true }))
       .then(res => {
         this.props.alert({
           heading: 'Success!!',
@@ -39,10 +40,25 @@ class CreateAddress extends Component {
           variant: 'success'
         })
       })
-      .catch(console.error)
+      .catch(() => {
+        this.props.alert({
+          heading: 'Error',
+          message: 'Something went wrong',
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
+    if (this.state.updated) {
+      return (
+        <Redirect to={
+          {
+            pathname: '/places'
+          }
+        }/>
+      )
+    }
     return (
       <div style={{ paddingTop: '4vh' }}>
         <AddressForm
