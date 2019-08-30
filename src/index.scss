@@ -38,7 +38,8 @@ body {
     font-weight: 400;
     letter-spacing: 1px;
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: darken($light-green, 30%);
       border: darken($light-green, 30%);
     }
@@ -47,7 +48,8 @@ body {
   .secondary {
     background-color: $purple;
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: darken($purple, 20%);
       border: darken($purple, 20%);
     }
@@ -56,7 +58,8 @@ body {
   .danger {
     background-color: $danger;
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: darken($danger, 20%);
       border: darken($danger, 20%);
     }
