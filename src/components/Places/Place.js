@@ -152,10 +152,10 @@ class Place extends Component {
     // this.clemson()
 
     return (
-      <div className="row" style={{ height: 'calc(100vh - 74px)' }}>
+      <div className="row">
         { place && (
           <React.Fragment>
-            <div className="col-sm-12 col-md-6 mx-auto mt-2">
+            <div className="col-sm-12 col-md-6 mx-auto my-2">
               <h2 className='place-data'>{place.name}</h2>
               <h4 className='place-data'>Description:</h4>
               <p className='place-data'>{place.description || 'No description available'}</p>
