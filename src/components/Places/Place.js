@@ -87,13 +87,12 @@ class Place extends Component {
           variant: 'success'
         })
       })
-      .catch(error => {
+      .catch(() => {
         this.props.alert({
           heading: 'Error',
           message: 'Something went wrong',
           variant: 'danger'
         })
-        console.error(error)
       })
   }
 
@@ -153,10 +152,10 @@ class Place extends Component {
     // this.clemson()
 
     return (
-      <div className="row">
+      <div className="row" style={{ height: 'calc(100vh - 74px)' }}>
         { place && (
           <React.Fragment>
-            <div className="col-sm-12 col-md-6 mx-auto mt-5" style={{ paddingTop: '4vh' }}>
+            <div className="col-sm-12 col-md-6 mx-auto mt-2">
               <h2 className='place-data'>{place.name}</h2>
               <h4 className='place-data'>Description:</h4>
               <p className='place-data'>{place.description || 'No description available'}</p>
@@ -175,7 +174,7 @@ class Place extends Component {
               </ButtonToolbar> : ''}
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                  <Modal.Title>Modal heading</Modal.Title>
+                  <Modal.Title>Delete {place.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete this place?</Modal.Body>
                 <Modal.Footer>

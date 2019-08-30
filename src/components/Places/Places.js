@@ -27,7 +27,11 @@ class Places extends Component {
       // do something with response
       this.setState({ places: response.data.places, isLoading: false })
     } catch (error) {
-      console.error(error)
+      this.props.alert({
+        heading: 'Error',
+        message: 'Something went wrong',
+        variant: 'danger'
+      })
     }
   }
 

@@ -16,8 +16,7 @@ const eastBoston = {
 }
 
 const MyMap = ({ center, zoom }) => (
-  // console.log('center', center)
-  <div className='p-0' style={{ height: '100vh', width: '100%' }}>
+  <div className='p-0' style={{ height: '100%', width: '100%' }}>
     <GoogleMapReact
       bootstrapURLKeys={{ key: 'AIzaSyDHOal4qk8UQoORBP2WCWQ9ccoxzm0t5N0' }}
       defaultCenter={eastBoston}

@@ -154,7 +154,7 @@ class App extends Component {
           <Route
             exact path='/'
             render={() => (
-              <div className="row">
+              <div className="row" style={{ height: 'calc(100vh - 74px)' }}>
                 <div className="col-sm-12 col-md-6 mx-auto mt-5">
                   <h1>Hey, let&apos;s explore eastie!</h1>
                   <br></br>

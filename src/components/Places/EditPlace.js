@@ -46,8 +46,7 @@ class EditPlace extends Component {
         })
         this.props.history.push(`/places/${this.state.place.id}`)
       })
-      .catch(error => {
-        console.error(error)
+      .catch(() => {
         this.props.alert({
           heading: 'Error',
           message: 'Something went wrong',

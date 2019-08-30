@@ -27,8 +27,6 @@ class CreatePlace extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    // this.setState({ place: { ...this.state.place, addresses: [{ place_id: this.state.place.id }] } })
-    // console.log(this.state.place)
     axios({
       method: 'POST',
       url: `${apiUrl}/places`,
@@ -45,7 +43,13 @@ class CreatePlace extends Component {
         })
         this.props.history.push(`/places/${res.data.place.id}`)
       })
-      .catch(console.error)
+      .catch(() => {
+        this.props.alert({
+          heading: 'Error',
+          message: 'Something went wrong',
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
