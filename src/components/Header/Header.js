@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { withRouter } from 'react-router-dom'
+
+import { signIn } from '../../api/auth'
 
 const authenticatedOptions = (
   <Fragment>
@@ -10,6 +13,14 @@ const authenticatedOptions = (
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
   </Fragment>
 )
+
+// const handleGuest = eventKey => {
+// if (eventKey) {
+//     <SignIn
+//       setUser={{ email: 'guest@guest', password: 'guest' }}
+//     />
+//   }
+// }
 
 const unauthenticatedOptions = (
   <Fragment>
@@ -23,19 +34,31 @@ const unauthenticatedOptions = (
 //   </Fragment>
 // )
 
-const Header = ({ user }) => (
-  <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
-    <Navbar.Brand className="title" href="#">
-      Explore Eastie
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-        { user ? authenticatedOptions : unauthenticatedOptions }
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-)
+class Header extends Component {
+  render () {
+    const { user, history, setUser } = this.props
+    const guestSignIn = (user, setUser) => {
+      signIn({ email: 'guest@guest', password: 'guest' })
+        .then(res => setUser(res.data.user))
+        // .then(() => console.log(user.email))
+        .then(() => history.push('/places'))
+    }
+    return (
+      <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
+        <Navbar.Brand className="title" href="#">
+        Explore Eastie
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+            { user ? authenticatedOptions : unauthenticatedOptions }
+            <Nav.Link onSelect={() => guestSignIn(user, setUser)} href="#places">Guest Sign In</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+  }
+}
 
-export default Header
+export default withRouter(Header)

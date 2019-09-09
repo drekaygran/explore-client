@@ -42,7 +42,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} setUser={this.setUser} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
             key={index}
@@ -62,7 +62,7 @@ class App extends Component {
             )}
           />
           <Route
-            path='/sign-in'
+            exact path='/sign-in'
             render={() => (
               <SignIn
                 alert={this.alert}
@@ -177,15 +177,5 @@ class App extends Component {
     )
   }
 }
-// <AuthenticatedRoute
-//   user={user}
-//   exact path='/places/:id/destroy'
-//   render={() => (
-//     <DeletePlace
-//       user={user}
-//       alert={this.alert}
-//     />
-//   )}
-// />
 
 export default App

@@ -22,7 +22,8 @@ class SignIn extends Component {
   })
 
   onSignIn = event => {
-    event.preventDefault()
+    // console.log(this.state)
+    // event.preventDefault()
 
     const { alert, history, setUser } = this.props
 
@@ -46,6 +47,9 @@ class SignIn extends Component {
 
   render () {
     const { email, password } = this.state
+    // if (this.props.guest) {
+    //   return this.onSignIn('')
+    // }
 
     return (
       <div className="row">
