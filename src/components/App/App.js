@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -85,10 +85,7 @@ class App extends Component {
             user={user}
             path='/change-password'
             render={() => (
-              <ChangePassword
-                alert={this.alert}
-                user={user}
-              />
+              user.email === 'guest@guest' ? <Redirect to='/places' /> : <ChangePassword alert={this.alert} user={user} />
             )}
           />
           <AuthenticatedRoute
