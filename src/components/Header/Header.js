@@ -14,6 +14,14 @@ const authenticatedOptions = (
   </Fragment>
 )
 
+const guestOptions = (
+  <Fragment>
+    <Nav.Link href="#places">Places</Nav.Link>
+    <Nav.Link href="#create-place">Add a Place</Nav.Link>
+    <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+  </Fragment>
+)
+
 // const handleGuest = eventKey => {
 // if (eventKey) {
 //     <SignIn
@@ -22,12 +30,12 @@ const authenticatedOptions = (
 //   }
 // }
 
-const unauthenticatedOptions = (
-  <Fragment>
-    <Nav.Link href="#sign-up">Sign Up</Nav.Link>
-    <Nav.Link href="#sign-in">Sign In</Nav.Link>
-  </Fragment>
-)
+// const unauthenticatedOptions = (
+//   <Fragment>
+//     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
+//     <Nav.Link href="#sign-in">Sign In</Nav.Link>
+//   </Fragment>
+// )
 
 // const alwaysOptions = (
 //   <Fragment>
@@ -52,8 +60,10 @@ class Header extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-            { user ? authenticatedOptions : unauthenticatedOptions }
-            <Nav.Link onSelect={() => guestSignIn(user, setUser)} href="#places">Guest Sign In</Nav.Link>
+            { user && user.email !== 'guest@guest' ? authenticatedOptions : (!user ? <Fragment>
+              <Nav.Link href="#sign-up">Sign Up</Nav.Link>
+              <Nav.Link href="#sign-in">Sign In</Nav.Link>
+              <Nav.Link onSelect={() => guestSignIn(user, setUser)} href="#places">Guest Sign In</Nav.Link></Fragment> : guestOptions) }
           </Nav>
         </Navbar.Collapse>
       </Navbar>
