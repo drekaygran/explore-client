@@ -10,9 +10,9 @@ class CreateAddress extends Component {
     address: {
       street_1: '',
       street_2: '',
-      city: '',
-      state: '',
-      zip_code: '',
+      city: 'Boston',
+      state: 'MA',
+      zip_code: '02128',
       place_id: this.props.match.params.id
     },
     updated: false
